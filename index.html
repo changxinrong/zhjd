@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>街道智慧街区 · 智慧治理与运营一体化平台</title>
+<meta name="theme-color" content="#2D5A7D" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%231C3A52'/%3E%3Ccircle cx='32' cy='32' r='24' fill='none' stroke='%23C9A96E' stroke-width='2.5'/%3E%3Ctext x='32' y='42' font-size='26' text-anchor='middle' fill='%23DCC08E' font-family='serif' font-weight='700'%3E晋%3C/text%3E%3C/svg%3E" />
+<style>
+:root {
+  --brand-600: #2D5A7D;
+  --brand-700: #244967;
+  --brand-800: #1C3A52;
+  --brand-900: #162D40;
+  --brand-50: #EDF2F7;
+  --gold-600: #9A7A40;
+  --gold-500: #B08A4F;
+  --gold-400: #C9A96E;
+  --gold-300: #DCC08E;
+  --gold-200: #E9D5AC;
+  --gold-100: #F3E8CF;
+  --gold-50: #FAF4E4;
+  --ink-900: #26292E;
+  --ink-600: #565B64;
+  --ink-400: #8F94A0;
+  --bg-page: #F4F2EC;
+  --line: #EBE8E0;
+  --font-display: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg-page);
+  color: var(--ink-900);
+  -webkit-font-smoothing: antialiased;
+}
+.font-display { font-family: var(--font-display); }
+
+/* ============ 顶部导航 ============ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  background: rgba(28, 58, 82, 0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201, 169, 110, 0.25);
+}
+.nav-brand { display: flex; align-items: center; gap: 12px; color: #fff; }
+.nav-mark {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1.5px solid var(--gold-400);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 15px; font-weight: 700;
+  color: var(--gold-300); position: relative; flex-shrink: 0;
+}
+.nav-mark::after {
+  content: ''; position: absolute; inset: 2.5px;
+  border-radius: 50%; border: 1px solid rgba(201, 169, 110, 0.4);
+}
+.nav-title { font-family: var(--font-display); font-size: 17px; font-weight: 700; letter-spacing: 2px; }
+.nav-sub { font-size: 11px; color: rgba(255,255,255,0.55); letter-spacing: 1px; margin-top: 1px; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  color: rgba(255,255,255,0.78); text-decoration: none; font-size: 14px;
+  letter-spacing: 1px; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold-300); }
+
+/* ============ Hero ============ */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex; align-items: center;
+  padding: 140px 8vw 100px;
+  background:
+    repeating-linear-gradient(-52deg, transparent 0 34px, rgba(255,255,255,0.04) 34px 35px),
+    linear-gradient(151deg, var(--brand-700) 0%, var(--brand-800) 58%, var(--brand-900) 100%);
+  overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 4px;
+  background: linear-gradient(90deg, var(--gold-500), var(--gold-300) 42%, var(--gold-500));
+  opacity: 0.9;
+}
+.hero-photo {
+  position: absolute; right: 0; top: 0; bottom: 0; width: 46%;
+  object-fit: cover; opacity: 0.9;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 38%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 38%);
+}
+.hero-content { position: relative; z-index: 2; max-width: 640px; color: #fff; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; letter-spacing: 3px; color: var(--gold-300);
+  margin-bottom: 22px;
+}
+.hero-eyebrow::before {
+  content: ''; width: 26px; height: 2px; background: var(--gold-400);
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5.4vw, 62px);
+  font-weight: 700; line-height: 1.22; letter-spacing: 4px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  margin-bottom: 10px;
+}
+.hero-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2.4vw, 26px);
+  font-weight: 700; letter-spacing: 6px;
+  color: var(--gold-200); margin-bottom: 26px;
+}
+.hero-desc {
+  font-size: 15.5px; line-height: 2; color: rgba(255,255,255,0.82);
+  margin-bottom: 38px; max-width: 560px;
+}
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 30px; border-radius: 999px; cursor: pointer;
+  font-size: 15px; letter-spacing: 2px; text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+  color: #20160A; font-weight: 600;
+  box-shadow: 0 6px 18px rgba(176, 138, 79, 0.35);
+}
+.btn-ghost {
+  border: 1.5px solid rgba(255,255,255,0.4); color: #fff;
+}
+.btn-ghost:hover { border-color: var(--gold-400); color: var(--gold-200); }
+
+.hero-stats {
+  position: absolute; left: 8vw; bottom: 44px; z-index: 2;
+  display: flex; gap: 56px;
+}
+.hstat { color: #fff; }
+.hstat b {
+  font-family: var(--font-display); font-size: 30px; font-weight: 700;
+  letter-spacing: 1px; color: var(--gold-200);
+  font-variant-numeric: tabular-nums;
+}
+.hstat span { display: block; font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 2px; margin-top: 4px; }
+
+/* ============ 通用段落 ============ */
+.section { padding: 96px 8vw; max-width: 1280px; margin: 0 auto; }
+.section-title {
+  font-family: var(--font-display);
+  display: flex; align-items: baseline; gap: 14px;
+  font-size: 30px; font-weight: 700; letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+.section-title::before {
+  content: ''; width: 5px; height: 22px; border-radius: 2px;
+  background: linear-gradient(180deg, var(--gold-400), var(--gold-500));
+  align-self: center;
+}
+.section-title small { font-size: 13px; color: var(--ink-400); letter-spacing: 2px; font-family: var(--font-body); }
+.section-desc { color: var(--ink-600); font-size: 15px; line-height: 1.9; margin-bottom: 48px; max-width: 660px; }
+
+/* ============ 三端 ============ */
+.ports { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.port-card {
+  background: #fff; border: 1px solid var(--line); border-radius: 18px;
+  padding: 34px 30px 30px; position: relative; overflow: hidden;
+  box-shadow: 0 1px 2px rgba(56,48,32,0.04), 0 4px 14px rgba(56,48,32,0.05);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.port-card:hover { transform: translateY(-6px); box-shadow: 0 8px 26px rgba(56,48,32,0.1); }
+.port-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--gold-500), var(--gold-300));
+  opacity: 0; transition: opacity 0.25s;
+}
+.port-card:hover::before { opacity: 1; }
+.port-no {
+  font-family: var(--font-display); font-size: 13px; color: var(--gold-600);
+  letter-spacing: 3px; margin-bottom: 14px;
+}
+.port-name {
+  font-family: var(--font-display); font-size: 22px; font-weight: 700;
+  letter-spacing: 2px; margin-bottom: 12px;
+}
+.port-desc { font-size: 14px; color: var(--ink-600); line-height: 1.9; margin-bottom: 20px; }
+.port-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.port-tag {
+  font-size: 12px; color: var(--brand-600);
+  background: var(--brand-50); border-radius: 4px; padding: 4px 10px;
+}
+.port-glyph {
+  position: absolute; right: 22px; top: 24px;
+  font-family: var(--font-display); font-size: 44px; font-weight: 700;
+  color: var(--brand-50); line-height: 1;
+}
+
+/* ============ 能力矩阵 ============ */
+.caps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.cap {
+  background: #fff; border: 1px solid var(--line); border-radius: 14px;
+  padding: 26px 24px;
+  transition: transform 0.2s;
+}
+.cap:hover { transform: translateY(-4px); }
+.cap-name {
+  font-family: var(--font-display); font-size: 17px; font-weight: 700;
+  letter-spacing: 2px; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 10px;
+}
+.cap-name i {
+  width: 26px; height: 26px; border-radius: 6px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--brand-600), var(--brand-800));
+  color: var(--gold-200); font-style: normal; font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+}
+.cap p { font-size: 13px; color: var(--ink-600); line-height: 1.85; }
+
+/* ============ 街区背景 ============ */
+.street {
+  background:
+    repeating-linear-gradient(-52deg, transparent 0 34px, rgba(255,255,255,0.04) 34px 35px),
+    linear-gradient(151deg, var(--brand-800), var(--brand-900));
+  color: #fff;
+  position: relative; overflow: hidden;
+}
+.street::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold-500), var(--gold-300) 42%, var(--gold-500));
+  opacity: 0.85;
+}
+.street .section { position: relative; z-index: 1; }
+.street .section-title { color: #fff; }
+.street .section-desc { color: rgba(255,255,255,0.7); }
+.street-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: center; }
+.street-photo {
+  width: 100%; border-radius: 16px; display: block;
+  border: 1px solid rgba(201, 169, 110, 0.35);
+  box-shadow: 0 10px 36px rgba(0,0,0,0.35);
+}
+.street-photo.second { margin-top: 20px; }
+.street-text p { font-size: 15px; line-height: 2.1; color: rgba(255,255,255,0.85); margin-bottom: 18px; }
+.street-quote {
+  font-family: var(--font-display); font-size: 18px; color: var(--gold-200);
+  letter-spacing: 3px; line-height: 1.8;
+  border-left: 3px solid var(--gold-400); padding-left: 18px; margin-top: 30px;
+}
+
+/* ============ 体验入口 ============ */
+.enter { text-align: center; }
+.enter-ports { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
+.enter-card {
+  display: flex; flex-direction: column; gap: 6px;
+  background: #fff; border: 1px solid var(--line); border-radius: 14px;
+  padding: 26px 40px; min-width: 240px;
+  text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+}
+.enter-card:hover { transform: translateY(-4px); box-shadow: 0 10px 26px rgba(56,48,32,0.1); }
+.enter-card b { font-family: var(--font-display); font-size: 19px; letter-spacing: 2px; color: var(--ink-900); }
+.enter-card span { font-size: 13px; color: var(--ink-400); }
+.enter-card em { font-style: normal; font-size: 12px; color: var(--gold-600); letter-spacing: 1px; }
+.enter-card.offline { border-style: dashed; opacity: 0.75; }
+.enter-card.offline em { color: var(--ink-400); }
+
+/* ============ 页脚 ============ */
+.footer {
+  background: var(--brand-900); color: rgba(255,255,255,0.55);
+  padding: 34px 8vw; font-size: 13px; letter-spacing: 1px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  border-top: 1px solid rgba(201, 169, 110, 0.2);
+}
+.footer b { color: var(--gold-200); font-family: var(--font-display); letter-spacing: 2px; }
+
+/* ============ 滚动进场 ============ */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.on { opacity: 1; transform: none; }
+
+/* ============ 响应式 ============ */
+@media (max-width: 1024px) {
+  .ports { grid-template-columns: 1fr; }
+  .caps { grid-template-columns: repeat(2, 1fr); }
+  .hero-photo { display: none; }
+  .street-grid { grid-template-columns: 1fr; }
+  .nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .section { padding: 72px 6vw; }
+  .hero { flex-direction: column; align-items: flex-start; padding-top: 130px; }
+  .hero-content { max-width: 100%; }
+  .hero-title { font-size: 30px; letter-spacing: 2px; }
+  .hero-stats { gap: 28px; position: static; margin-top: 52px; flex-wrap: wrap; width: 100%; }
+  .hstat b { font-size: 26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<header class="nav">
+  <div class="nav-brand">
+    <span class="nav-mark">晋</span>
+    <div>
+      <div class="nav-title">街道智慧街区</div>
+      <div class="nav-sub">智慧治理与运营一体化平台</div>
+    </div>
+  </div>
+  <nav class="nav-links">
+    <a href="#ports">平台架构</a>
+    <a href="#caps">核心能力</a>
+    <a href="#street">街区背景</a>
+    <a href="#enter">开始体验</a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <img class="hero-photo" src="assets/banner-1.jpg" alt="抱鼓巷夜市实景" />
+  <div class="hero-content">
+    <div class="hero-eyebrow">唐风晋韵 · 数字街区 · 智慧治理</div>
+    <h1 class="hero-title">让七百米老街<br />长出数字化的翅膀</h1>
+    <div class="hero-subtitle">街道智慧治理与运营一体化平台</div>
+    <p class="hero-desc">
+      面向街区运营方、入驻商户与八方游客，打通「游客体验 — 商户服务 — 运营管理 — 数据指挥」全链路，
+      以数字之力焕新千年古韵，让传统商业街区治理更精细、运营更高效、体验更有温度。
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#enter">开始体验</a>
+      <a class="btn btn-ghost" href="#ports">了解平台架构</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat"><b>4</b><span>角色权限体系</span></div>
+    <div class="hstat"><b>3</b><span>端一体化协同</span></div>
+    <div class="hstat"><b>72.73<i style="font-style:normal;font-size:16px;">%</i></b><span>街区事件办结率</span></div>
+    <div class="hstat"><b>15</b><span>入驻在营商户</span></div>
+  </div>
+</section>
+
+<!-- 三端 -->
+<section class="section" id="ports">
+  <h2 class="section-title reveal">一横三端 <small>ONE PLATFORM · THREE PORTALS</small></h2>
+  <p class="section-desc reveal">同一套底座，三端各司其职：移动端面向游客与商户，管理端面向运营人员，大屏面向指挥中枢。</p>
+  <div class="ports">
+    <div class="port-card reveal">
+      <div class="port-glyph">移</div>
+      <div class="port-no">PORTAL · 01</div>
+      <div class="port-name">H5 移动门户</div>
+      <p class="port-desc">游客与商户的移动入口：实景轮播、景区导览、商铺推荐、活动报名、在线缴费、报修与事件上报，一部手机逛遍全街。</p>
+      <div class="port-tags"><span class="port-tag">游客导览</span><span class="port-tag">商户自助</span><span class="port-tag">移动营销</span></div>
+    </div>
+    <div class="port-card reveal">
+      <div class="port-glyph">管</div>
+      <div class="port-no">PORTAL · 02</div>
+      <div class="port-name">Web 运营管理端</div>
+      <p class="port-desc">运营人员的工作台：轮播图、商铺、景点、活动全内容零代码配置，商户入驻审核、账单核销、通知派发一屏统管。</p>
+      <div class="port-tags"><span class="port-tag">内容运营</span><span class="port-tag">商户管理</span><span class="port-tag">权限管控</span></div>
+    </div>
+    <div class="port-card reveal">
+      <div class="port-glyph">屏</div>
+      <div class="port-no">PORTAL · 03</div>
+      <div class="port-name">可视化数据大屏</div>
+      <p class="port-desc">投放到街区指挥中心的驾驶舱：核心指标、楼层 3D 态势、营收与事件趋势、实时事件流，让治理数据一眼可读。</p>
+      <div class="port-tags"><span class="port-tag">实时态势</span><span class="port-tag">趋势洞察</span><span class="port-tag">指挥值守</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 能力矩阵 -->
+<section class="section" id="caps" style="padding-top: 20px;">
+  <h2 class="section-title reveal">核心能力 <small>CAPABILITIES</small></h2>
+  <p class="section-desc reveal">治理、赋能、服务、指挥四位一体，覆盖街区运营全场景。</p>
+  <div class="caps">
+    <div class="cap reveal">
+      <div class="cap-name"><i>治</i>智慧治理</div>
+      <p>事件"发现—上报—处置—办结"全流程闭环，四类事件、四级分级，巡查处置有迹可循。</p>
+    </div>
+    <div class="cap reveal">
+      <div class="cap-name"><i>商</i>商户赋能</div>
+      <p>账单在线缴费、报修进度跟踪、通知定向触达，商户服务自助化，物业协同零距离。</p>
+    </div>
+    <div class="cap reveal">
+      <div class="cap-name"><i>游</i>游客服务</div>
+      <p>实景轮播门面、楼层业态导览、商铺逛吃指南、活动在线报名，逛前有预期、逛中有指引。</p>
+    </div>
+    <div class="cap reveal">
+      <div class="cap-name"><i>数</i>数字中枢</div>
+      <p>商户、事件、通知、账单数据统一汇聚，驾驶舱工作台与指挥大屏双视角洞察全局。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 街区背景 -->
+<section class="street" id="street">
+  <div class="section">
+    <h2 class="section-title reveal">街区背景 <small>ABOUT THE DISTRICT</small></h2>
+    <p class="section-desc reveal">平台服务的主角——抱鼓巷文化街区。</p>
+    <div class="street-grid">
+      <div class="reveal">
+        <img class="street-photo" src="assets/banner-3.jpg" alt="抱鼓巷牌坊夜景" />
+        <img class="street-photo second" src="assets/banner-2.jpg" alt="晋酒荟主题美陈" />
+      </div>
+      <div class="street-text reveal">
+        <p>
+          抱鼓巷，得名于门前的"抱鼓石"，北起学府东街、南至许坦东街，全长约 700 米，
+          是一条以唐风晋韵为建筑主题、青砖灰瓦为底色的夜经济步行街，
+          也是全省首个 5G+AR 全场景数字商业街区。
+        </p>
+        <p>
+          街区集文化体验、特色美食、文创零售、休闲娱乐于一体，
+          由运营方携手中国电信太原分公司共建数字化底座——
+          本平台正是这张数字底座上的治理与运营中枢。
+        </p>
+        <div class="street-quote">"把千年晋韵，装进一块块会说话的屏幕里。"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 体验入口 -->
+<section class="section enter" id="enter">
+  <h2 class="section-title reveal" style="justify-content: center;">开始体验 <small style="align-self:center;">GET STARTED</small></h2>
+  <p class="section-desc reveal" style="margin-left: auto; margin-right: auto; text-align: center; max-width: 560px;">三端均可私有化部署，体验地址以现场部署为准。未部署时可拉取开源仓库一键启动（node portal/server.js）。</p>
+  <div class="enter-ports">
+    <a class="enter-card reveal" id="entry-h5" href="http://localhost:3001" target="_blank" rel="noopener">
+      <b>H5 移动门户</b>
+      <span>游客浏览 · 商户自助服务 · AI 管家晋小二</span>
+      <em>localhost:3001</em>
+    </a>
+    <a class="enter-card reveal" id="entry-admin" href="http://localhost:3000" target="_blank" rel="noopener">
+      <b>Web 管理端</b>
+      <span>运营配置 · 治理调度 · 权限管控</span>
+      <em>localhost:3000</em>
+    </a>
+    <a class="enter-card reveal" id="entry-screen" href="http://localhost:3002" target="_blank" rel="noopener">
+      <b>数据大屏</b>
+      <span>指挥中枢 · 实时态势 · 趋势洞察</span>
+      <em>localhost:3002</em>
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div><b>街道智慧街区</b> · 智慧治理与运营一体化平台</div>
+  <div>© 2026 抱鼓巷数字街区 · 公开演示版 v1.1 · 开源仓库：gitee.com/xincheng1017/smart-streets</div>
+</footer>
+
+<script>
+// 滚动进场
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// 三端入口探活：不可达时降级为“本地体验”提示，避免在线访客点进失效链接
+['h5', 'admin', 'screen'].forEach(k => {
+  const a = document.getElementById('entry-' + k);
+  if (!a) return;
+  fetch(a.href, { mode: 'no-cors', cache: 'no-store' }).catch(() => {
+    const em = a.querySelector('em');
+    const span = a.querySelector('span');
+    if (em) em.textContent = '本机未启动 · 仓库说明内含启动方式';
+    if (span) span.textContent = '端尚未部署，可拉取仓库按 README 启动';
+    a.classList.add('offline');
+  });
+});
+</script>
+</body>
+</html>
