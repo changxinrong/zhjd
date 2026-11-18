@@ -220,6 +220,51 @@ body {
 }
 .cap p { font-size: 13px; color: var(--ink-600); line-height: 1.85; }
 
+/* ============ AI 智能层 ============ */
+.ai-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 52px; align-items: center; }
+.ai-points { display: flex; flex-direction: column; gap: 18px; }
+.ai-point {
+  background: #fff; border: 1px solid var(--line); border-left: 3px solid var(--gold-400);
+  border-radius: 14px; padding: 18px 22px;
+  box-shadow: 0 1px 2px rgba(56,48,32,0.04), 0 4px 14px rgba(56,48,32,0.05);
+}
+.ai-point b { font-family: var(--font-display); font-size: 16.5px; letter-spacing: 1px; color: var(--ink-900); }
+.ai-point p { font-size: 13.5px; color: var(--ink-600); line-height: 1.85; margin-top: 6px; }
+.ai-chat {
+  background: linear-gradient(160deg, var(--brand-700), var(--brand-900));
+  border-radius: 18px; padding: 22px 22px 24px;
+  border: 1px solid rgba(201,169,110,0.35);
+  box-shadow: 0 14px 40px rgba(28,58,82,0.28);
+}
+.ai-chat-head {
+  display: flex; align-items: center; gap: 10px;
+  color: #fff; font-size: 13px; letter-spacing: 1px;
+  padding-bottom: 14px; margin-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.ai-chat-avatar {
+  width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--gold-400);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 700; color: var(--gold-200); font-size: 14px;
+}
+.ai-msg { border-radius: 12px; padding: 10px 13px; font-size: 13px; line-height: 1.65; margin-bottom: 10px; max-width: 92%; }
+.ai-msg.user { background: rgba(255,255,255,0.14); color: #fff; margin-left: auto; width: fit-content; border-top-right-radius: 4px; }
+.ai-msg.bot { background: #fff; color: var(--ink-900); border-top-left-radius: 4px; width: fit-content; }
+.ai-card {
+  background: #fff; border-radius: 12px; padding: 12px 14px;
+  border-top: 3px solid var(--gold-400); margin-top: 4px;
+}
+.ai-card-title { font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--ink-900); letter-spacing: 1px; margin-bottom: 8px; }
+.ai-card-row { display: flex; justify-content: space-between; font-size: 12px; padding: 5px 0; border-bottom: 1px dashed var(--line); }
+.ai-card-row:last-of-type { border-bottom: none; }
+.ai-card-row span { color: var(--ink-400); }
+.ai-card-row b { color: var(--ink-900); font-weight: 600; }
+.ai-card-btn {
+  margin-top: 10px; text-align: center; font-size: 12px; font-weight: 600;
+  color: #20160A; background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+  border-radius: 999px; padding: 7px 0; letter-spacing: 1px;
+}
+
 /* ============ 街区背景 ============ */
 .street {
   background:
@@ -279,6 +324,11 @@ body {
 .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.on { opacity: 1; transform: none; }
 
+/* 响应式：AI 两栏在窄屏堆叠 */
+@media (max-width: 1024px) {
+  .ai-grid { grid-template-columns: 1fr; gap: 30px; }
+}
+
 /* ============ 响应式 ============ */
 @media (max-width: 1024px) {
   .ports { grid-template-columns: 1fr; }
@@ -314,6 +364,7 @@ body {
   <nav class="nav-links">
     <a href="#ports">平台架构</a>
     <a href="#caps">核心能力</a>
+    <a href="#ai">AI 能力</a>
     <a href="#street">街区背景</a>
     <a href="#enter">开始体验</a>
   </nav>
@@ -339,7 +390,7 @@ body {
     <div class="hstat"><b>4</b><span>角色权限体系</span></div>
     <div class="hstat"><b>3</b><span>端一体化协同</span></div>
     <div class="hstat"><b>72.73<i style="font-style:normal;font-size:16px;">%</i></b><span>街区事件办结率</span></div>
-    <div class="hstat"><b>15</b><span>入驻在营商户</span></div>
+    <div class="hstat"><b>1</b><span>AI 管家在岗</span></div>
   </div>
 </section>
 
@@ -352,8 +403,8 @@ body {
       <div class="port-glyph">移</div>
       <div class="port-no">PORTAL · 01</div>
       <div class="port-name">H5 移动门户</div>
-      <p class="port-desc">游客与商户的移动入口：实景轮播、景区导览、商铺推荐、活动报名、在线缴费、报修与事件上报，一部手机逛遍全街。</p>
-      <div class="port-tags"><span class="port-tag">游客导览</span><span class="port-tag">商户自助</span><span class="port-tag">移动营销</span></div>
+      <p class="port-desc">游客与商户的移动入口：实景轮播、景区导览、商铺推荐、活动报名、在线缴费，更有 AI 管家「晋小二」一句话办事；工作人员可在移动工作台直接处置事件与报修。</p>
+      <div class="port-tags"><span class="port-tag">AI 管家</span><span class="port-tag">游客导览</span><span class="port-tag">移动处置</span></div>
     </div>
     <div class="port-card reveal">
       <div class="port-glyph">管</div>
@@ -392,6 +443,40 @@ body {
     <div class="cap reveal">
       <div class="cap-name"><i>数</i>数字中枢</div>
       <p>商户、事件、通知、账单数据统一汇聚，驾驶舱工作台与指挥大屏双视角洞察全局。</p>
+    </div>
+  </div>
+</section>
+
+<!-- AI 智能层 -->
+<section class="section" id="ai">
+  <h2 class="section-title reveal">AI 智能层 <small>AI POWERED</small></h2>
+  <p class="section-desc reveal">不止于管理，更能对话办事——平台内置 AI 管家「晋小二」。</p>
+  <div class="ai-grid">
+    <div class="ai-points reveal">
+      <div class="ai-point">
+        <b>对话式办事</b>
+        <p>商户一句话描述问题，AI 自动整理成规范工单与事件，核对确认后一键提交，告别繁琐表单。</p>
+      </div>
+      <div class="ai-point">
+        <b>双引擎保障</b>
+        <p>大模型驱动为主，规则引擎兜底——网络异常自动降级，演示与值守零中断。</p>
+      </div>
+      <div class="ai-point">
+        <b>安全红线</b>
+        <p>AI 不直接写库：所有提交先经预览卡人工确认；火情伤亡等紧急描述直转人工应急渠道。</p>
+      </div>
+    </div>
+    <div class="ai-chat reveal">
+      <div class="ai-chat-head"><span class="ai-chat-avatar">晋</span>晋小二 · 街巷管家</div>
+      <div class="ai-msg user">2F 消防通道被杂物堵了</div>
+      <div class="ai-msg bot">情况我记下了，请核对下方上报信息，点「确认提交」后直达街区数字中枢～</div>
+      <div class="ai-card">
+        <div class="ai-card-title">事件上报 · 请确认</div>
+        <div class="ai-card-row"><span>事件类型</span><b>告警</b></div>
+        <div class="ai-card-row"><span>发生位置</span><b>2F</b></div>
+        <div class="ai-card-row"><span>上报人</span><b>陈大厨</b></div>
+        <div class="ai-card-btn">确认提交</div>
+      </div>
     </div>
   </div>
 </section>
@@ -448,7 +533,7 @@ body {
 
 <footer class="footer">
   <div><b>街道智慧街区</b> · 智慧治理与运营一体化平台</div>
-  <div>© 2026 抱鼓巷数字街区 · 公开演示版 v1.1 · 开源仓库：gitee.com/xincheng1017/smart-streets</div>
+  <div>© 2026 抱鼓巷数字街区 · 公开演示版 v1.2 · 开源仓库：gitee.com/xincheng1017/smart-streets</div>
 </footer>
 
 <script>
