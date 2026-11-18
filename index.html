@@ -139,6 +139,30 @@ body {
   position: absolute; left: 8vw; bottom: 44px; z-index: 2;
   display: flex; gap: 56px;
 }
+
+/* 向下浏览提示 */
+.hero-scroll {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  bottom: 22px; z-index: 2;
+  width: 26px; height: 26px;
+  border: 1px solid rgba(201, 169, 110, 0.55);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none;
+  animation: bob 2.2s ease-in-out infinite;
+
+  span {
+    width: 6px; height: 6px;
+    border-right: 1.5px solid var(--gold-300);
+    border-bottom: 1.5px solid var(--gold-300);
+    transform: rotate(45deg) translate(-1px, -1px);
+  }
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.85; }
+  50% { transform: translateX(-50%) translateY(6px); opacity: 1; }
+}
 .hstat { color: #fff; }
 .hstat b {
   font-family: var(--font-display); font-size: 30px; font-weight: 700;
@@ -196,6 +220,123 @@ body {
   position: absolute; right: 22px; top: 24px;
   font-family: var(--font-display); font-size: 44px; font-weight: 700;
   color: var(--brand-50); line-height: 1;
+}
+
+/* ============ 产品一览 ============ */
+.tour { padding-top: 40px; }
+
+.browser-frame {
+  max-width: 1060px;
+  margin: 0 auto 56px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 12px rgba(56,48,32,0.06), 0 24px 60px rgba(28,58,82,0.14);
+
+  .browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 11px 16px;
+    background: #F3F1EB;
+    border-bottom: 1px solid var(--line);
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+
+      &.r { background: #E0705F; }
+      &.y { background: #E5B45C; }
+      &.g { background: #71B97F; }
+    }
+
+    .browser-url {
+      flex: 1;
+      margin-left: 10px;
+      font-size: 11.5px;
+      color: var(--ink-400);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 14px;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  img { display: block; width: 100%; }
+}
+
+.phone-row {
+  display: flex;
+  justify-content: center;
+  gap: 56px;
+  margin-bottom: 56px;
+  flex-wrap: wrap;
+}
+
+.phone-frame {
+  margin: 0;
+  width: 250px;
+
+  .phone-screen {
+    position: relative;
+    border-radius: 34px;
+    overflow: hidden;
+    border: 6px solid #101D29;
+    box-shadow: 0 18px 44px rgba(28,58,82,0.22);
+    background: #101D29;
+
+    .phone-notch {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 84px;
+      height: 18px;
+      background: #101D29;
+      border-radius: 999px;
+      z-index: 2;
+    }
+
+    img { display: block; width: 100%; }
+  }
+
+  figcaption {
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-400);
+    letter-spacing: 1px;
+    margin-top: 14px;
+  }
+}
+
+.screen-frame {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(201, 169, 110, 0.5);
+  background: linear-gradient(160deg, var(--brand-800), var(--brand-900));
+  box-shadow: 0 24px 60px rgba(28,58,82,0.2);
+
+  img {
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  figcaption {
+    text-align: center;
+    font-size: 12px;
+    color: var(--gold-200);
+    letter-spacing: 2px;
+    padding: 10px 0 4px;
+  }
 }
 
 /* ============ 能力矩阵 ============ */
@@ -314,11 +455,41 @@ body {
 /* ============ 页脚 ============ */
 .footer {
   background: var(--brand-900); color: rgba(255,255,255,0.55);
-  padding: 34px 8vw; font-size: 13px; letter-spacing: 1px;
-  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  padding: 56px 8vw 28px; font-size: 13px; letter-spacing: 1px;
   border-top: 1px solid rgba(201, 169, 110, 0.2);
 }
-.footer b { color: var(--gold-200); font-family: var(--font-display); letter-spacing: 2px; }
+.footer-cols {
+  display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 40px;
+  max-width: 1120px; margin: 0 auto 40px;
+}
+.footer-brand {
+  .footer-logo { display: flex; align-items: center; gap: 12px; }
+  .footer-mark {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1.5px solid var(--gold-400); display: inline-flex;
+    align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 700; color: var(--gold-200); font-size: 16px;
+  }
+  b { font-family: var(--font-display); font-size: 17px; color: #fff; letter-spacing: 2px; font-weight: 700; }
+  p { margin-top: 14px; line-height: 2; color: rgba(255,255,255,0.45); font-size: 12.5px; }
+}
+.footer-col {
+  h5 {
+    font-family: var(--font-display); font-size: 13px; color: var(--gold-200);
+    letter-spacing: 2px; margin: 0 0 16px; font-weight: 700;
+  }
+  a {
+    display: block; color: rgba(255,255,255,0.55); text-decoration: none;
+    font-size: 12.5px; line-height: 2.3; transition: color 0.2s;
+    &:hover { color: var(--gold-300); }
+  }
+}
+.footer-bottom {
+  max-width: 1120px; margin: 0 auto; padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  font-size: 11.5px; color: rgba(255,255,255,0.35); letter-spacing: 1px;
+}
 
 /* ============ 滚动进场 ============ */
 .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -343,6 +514,14 @@ body {
   .hero-title { font-size: 30px; letter-spacing: 2px; }
   .hero-stats { gap: 28px; position: static; margin-top: 52px; flex-wrap: wrap; width: 100%; }
   .hstat b { font-size: 26px; }
+  .hero-scroll { display: none; }
+  .ai-grid { grid-template-columns: 1fr; gap: 30px; }
+  .tour { padding-top: 20px; }
+  .phone-row { gap: 28px; margin-bottom: 40px; }
+  .phone-frame { width: 210px; }
+  .browser-frame { margin-bottom: 40px; }
+  .footer-cols { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
 }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
@@ -363,6 +542,7 @@ body {
   </div>
   <nav class="nav-links">
     <a href="#ports">平台架构</a>
+    <a href="#tour">产品一览</a>
     <a href="#caps">核心能力</a>
     <a href="#ai">AI 能力</a>
     <a href="#street">街区背景</a>
@@ -392,6 +572,9 @@ body {
     <div class="hstat"><b>72.73<i style="font-style:normal;font-size:16px;">%</i></b><span>街区事件办结率</span></div>
     <div class="hstat"><b>1</b><span>AI 管家在岗</span></div>
   </div>
+  <a class="hero-scroll" href="#ports" aria-label="向下浏览">
+    <span></span>
+  </a>
 </section>
 
 <!-- 三端 -->
@@ -421,6 +604,45 @@ body {
       <div class="port-tags"><span class="port-tag">实时态势</span><span class="port-tag">趋势洞察</span><span class="port-tag">指挥值守</span></div>
     </div>
   </div>
+</section>
+
+<!-- 产品一览 -->
+<section class="section tour" id="tour">
+  <h2 class="section-title reveal">产品一览 <small>PRODUCT TOUR</small></h2>
+  <p class="section-desc reveal">真实界面，所见即所得——三端跑在同一套系统之上。</p>
+
+  <!-- 管理端：浏览器窗 -->
+  <div class="browser-frame reveal">
+    <div class="browser-bar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="browser-url">街道智慧治理与运营一体化平台 · 工作台</span>
+    </div>
+    <img src="assets/shot-admin.jpg" alt="Web 运营管理端工作台" />
+  </div>
+
+  <!-- 移动端双机 -->
+  <div class="phone-row">
+    <figure class="phone-frame reveal">
+      <div class="phone-screen">
+        <span class="phone-notch"></span>
+        <img src="assets/shot-h5.jpg" alt="H5 移动门户首页" />
+      </div>
+      <figcaption>H5 移动门户 · 游客 / 商户 / 游客一屏直达</figcaption>
+    </figure>
+    <figure class="phone-frame reveal">
+      <div class="phone-screen">
+        <span class="phone-notch"></span>
+        <img src="assets/shot-workbench.jpg" alt="街区工作台" />
+      </div>
+      <figcaption>街区工作台 · 工作人员移动处置</figcaption>
+    </figure>
+  </div>
+
+  <!-- 数据大屏 -->
+  <figure class="screen-frame reveal">
+    <img src="assets/shot-screen.jpg" alt="可视化数据大屏" />
+    <figcaption>数据大屏 · 指挥中心实时态势</figcaption>
+  </figure>
 </section>
 
 <!-- 能力矩阵 -->
@@ -532,8 +754,28 @@ body {
 </section>
 
 <footer class="footer">
-  <div><b>街道智慧街区</b> · 智慧治理与运营一体化平台</div>
-  <div>© 2026 抱鼓巷数字街区 · 公开演示版 v1.2 · 开源仓库：gitee.com/xincheng1017/smart-streets</div>
+  <div class="footer-cols">
+    <div class="footer-brand">
+      <div class="footer-logo"><span class="footer-mark">晋</span><b>街道智慧街区</b></div>
+      <p>街道智慧治理与运营一体化平台<br/>唐风晋韵 · 数字街区 · 智慧治理</p>
+    </div>
+    <div class="footer-col">
+      <h5>平台能力</h5>
+      <a href="#ports">一横三端</a>
+      <a href="#tour">产品一览</a>
+      <a href="#ai">AI 智能层</a>
+    </div>
+    <div class="footer-col">
+      <h5>关于街区</h5>
+      <a href="#street">抱鼓巷介绍</a>
+      <a href="#enter">开始体验</a>
+      <a href="https://gitee.com/xincheng1017/smart-streets" target="_blank" rel="noopener">开源仓库</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 抱鼓巷数字街区 · 公开演示版 v1.2</span>
+    <span>图片来自公开报道，仅供演示</span>
+  </div>
 </footer>
 
 <script>
